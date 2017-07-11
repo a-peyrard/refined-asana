@@ -1,0 +1,89 @@
+{
+	"scripts": {
+		"test": "xo && ava && npm run build",
+		"build": "webpack",
+		"watch": "webpack --watch",
+		"watch:sourcemap": "webpack --watch --devtool eval-cheap-module-source-map",
+		"reduce-size": "babel --out-dir . --no-comments extension/*.js",
+		"release:amo": "cd extension && webext submit",
+		"release:cws": "cd extension && webstore upload --auto-publish",
+		"release": "run-s build update-version release:* reduce-size",
+		"update-version": "dot-json extension/manifest.json version $(date -u +%y.%-m.%-d.%-H%M)"
+	},
+	"dependencies": {
+		"copy-text-to-clipboard": "^1.0.2",
+		"debounce-fn": "^1.0.0",
+		"dom-chef": "^1.0.2",
+		"dom-loaded": "^1.0.0",
+		"element-ready": "^2.0.0",
+		"github-injection": "^0.3.0",
+		"linkify-issues": "^1.3.0",
+		"linkify-urls": "^1.3.0",
+		"select-dom": "^4.1.0",
+		"shorten-repo-url": "^1.1.0",
+		"to-markdown": "^3.1.0",
+		"to-semver": "^1.1.0",
+		"webext-dynamic-content-scripts": "^2.0.1",
+		"webext-options-sync": "^0.11.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"babel-cli": "^6.24.1",
+		"babel-core": "^6.25.0",
+		"babel-loader": "^7.1.1",
+		"babel-plugin-jsx": "^1.2.0",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"chrome-webstore-upload-cli": "^1.0.0",
+		"common-tags": "^1.4.0",
+		"dot-json": "^1.0.3",
+		"npm-run-all": "^4.0.2",
+		"webext": "^1.9.1-with-submit.1",
+		"webpack": "^3.0.0",
+		"xo": "*"
+	},
+	"xo": {
+		"envs": [
+			"browser",
+			"jquery",
+			"webextensions"
+		],
+		"rules": {
+			"import/no-unassigned-import": 0,
+			"no-unused-vars": [
+				2,
+				{
+					"varsIgnorePattern": "^h$"
+				}
+			],
+			"capitalized-comments": 0
+		},
+		"ignores": [
+			"extension/**"
+		]
+	},
+	"ava": {
+		"files": [
+			"test/*.js"
+		],
+		"source": [
+			"extension/*.js"
+		],
+		"require": [
+			"babel-register"
+		]
+	},
+	"babel": {
+		"comments": false,
+		"plugins": [
+			"transform-es2015-modules-commonjs",
+			[
+				"transform-react-jsx",
+				{
+					"pragma": "h",
+					"useBuiltIns": true
+				}
+			]
+		]
+	}
+}
