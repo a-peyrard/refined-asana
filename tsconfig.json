@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [ "es2015", "dom" ],
+    "outDir": "lib",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "./test/**/*.ts"
+  ],
+  "baseUrl": "types",
+  "typeRoots": ["types"]
+}
