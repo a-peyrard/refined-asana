@@ -1,0 +1,1 @@
+export const isBoard = () => /\/board$/.test(location.pathname);

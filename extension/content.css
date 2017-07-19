@@ -1,1 +1,8 @@
-/** to be defined... */
+.btn-only-mine {
+    align-self: center;
+    /* margin: 3px 5px 3px 50px; find a way to force content.css!? */ 
+}
+
+.btn-all {
+    /* margin: 3px 5px 3px 50px; */
+}

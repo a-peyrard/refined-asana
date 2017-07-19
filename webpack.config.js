@@ -17,7 +17,7 @@ module.exports = {
 		umdNamedDefine: true
 	},
 	resolve: {
-		extensions: ['.ts', '.js']
+		extensions: ['.ts', '.tsx', '.js', '.jsx']
 	},
 	plugins: [
       	new CheckerPlugin(),
@@ -26,14 +26,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
+				test: /\.tsx?$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'awesome-typescript-loader'
 				}
 			},
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader'
